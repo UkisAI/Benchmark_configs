@@ -5,3 +5,6 @@ __pycache__/
 results/
 traces/
 datasets/
+benchmarks/runs/
+benchmarks/upstream/
+monitors/logs/
