@@ -18,4 +18,4 @@ Terminal-Bench 2.1 has **two separate configurations**. Flash-Next runs eight tr
 
 DeepSWE v1.1 uses 113 tasks and three attempts per task. All 113 pinned `task.toml` files specify a separate verifier environment, one collection hook, a 1,800-second verifier timeout, a 300-second collection timeout, and a 10,800-second agent timeout. It uses mini-swe-agent through Pier; the saved configuration had zero retries and 16 concurrent trials per model.
 
-The 100,000-token LiveCodeBench profile is a new evaluation setting. Older 32,768-token scores are separate evidence. The full `release_v6` set has 1,055 questions; the incremental v6 subset has 175. AIME 2024 and 2025 use the 250,000-token, five-seed profile specified here; do not combine results from runs with different caps or trial counts.
+The 100,000-token LiveCodeBench profile is a new evaluation setting. Full `release_v6` set has 1,055 questions; the incremental v6 subset has 175. AIME 2024 and 2025 use the 250,000-token, five-seed profile specified here; do not combine results from runs with different caps or trial counts.
