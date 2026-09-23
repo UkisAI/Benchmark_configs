@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "profile": "qwen38_bf16_vllm0271_xhigh_k5",
+  "serving": {
+    "precision": "BF16",
+    "engine": "vLLM",
+    "engine_version": "0.27.1",
+    "reasoning_parser": "qwen3",
+    "max_model_len": 262144,
+    "chat_template_kwargs": {
+      "enable_thinking": true,
+      "reasoning_effort": "xhigh"
+    }
+  },
+  "sampling": {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0,
+    "presence_penalty": 0,
+    "repetition_penalty": 1
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "response_endpoint": "/v1/chat/completions",
+  "scoring_policy": {
+    "report_per_seed": true,
+    "report_pooled": true,
+    "count_errors_in_denominator": true,
+    "record_cap_hits": true,
+    "final_answer_from": "message.content",
+    "reasoning_from": "message.reasoning_content"
+  }
+}

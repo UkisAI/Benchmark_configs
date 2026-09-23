@@ -1,0 +1,37 @@
+{
+  "job_name": "REPLACE_FLASH_NEXT_RUN_NAME",
+  "jobs_dir": "./runs",
+  "n_attempts": 5,
+  "n_concurrent_trials": 8,
+  "agents": [
+    {
+      "name": "terminus-2",
+      "model_name": "openai/REPLACE_MODEL",
+      "n_concurrent": 8,
+      "kwargs": {
+        "api_base": "REPLACE_API_BASE",
+        "api_key": "REPLACE_API_KEY",
+        "parser_name": "json",
+        "temperature": 1,
+        "interleaved_thinking": true,
+        "store_all_messages": true,
+        "model_info": {
+          "max_input_tokens": 131072,
+          "max_output_tokens": 131072
+        },
+        "llm_kwargs": {
+          "timeout": 3600
+        },
+        "llm_call_kwargs": {
+          "top_p": 1
+        }
+      }
+    }
+  ],
+  "datasets": [
+    {
+      "name": "terminal-bench/terminal-bench-2-1",
+      "ref": "sha256:7d7bdc1cbedad549fc1140404bd4dc45e5fd0ea7c4186773687d177ad3a0699a"
+    }
+  ]
+}

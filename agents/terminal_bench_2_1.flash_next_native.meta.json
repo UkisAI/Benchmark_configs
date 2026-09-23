@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "benchmark": "Terminal-Bench 2.1",
+  "task_count": 89,
+  "attempts_per_task": 5,
+  "harness": {
+    "repository": "https://github.com/harbor-framework/harbor",
+    "version": "0.20.0",
+    "agent": "terminus-2",
+    "agent_version": "2.0.0",
+    "parser_name": "json",
+    "interleaved_thinking": true
+  },
+  "dataset": {
+    "name": "terminal-bench/terminal-bench-2-1",
+    "repository": "https://github.com/harbor-framework/terminal-bench-2-1",
+    "ref": "sha256:7d7bdc1cbedad549fc1140404bd4dc45e5fd0ea7c4186773687d177ad3a0699a"
+  },
+  "llm_call_timeout_seconds": 3600,
+  "sampling": {
+    "temperature": 1,
+    "top_p": 1
+  },
+  "scoring": "Five attempts per task; score all 89 tasks with their official verifier; count errors and timeouts in the denominator.",
+  "model_family": "Qwen3.8-Flash-Next",
+  "n_concurrent_trials": 8,
+  "agent_timeout": "native per-task limits from pinned Terminal-Bench 2.1 tasks",
+  "note": "The matching Harbor job deliberately omits override_timeout_sec. Adjust concurrency only to fit available GPU memory; record any change in the run manifest."
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "id": "gpqa_diamond",
+  "profile": "../protocol.json",
+  "dataset": {
+    "repository": "https://huggingface.co/datasets/Idavidrein/gpqa",
+    "revision": "633f5ee89ab8ad4522a9f850766b73f62147ffdd",
+    "file": "gpqa_diamond.csv",
+    "split": "diamond",
+    "question_count": 198
+  },
+  "expected_questions": 198,
+  "seed_policy": {
+    "type": "explicit",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_generations": 990
+  },
+  "max_output_tokens": 100000,
+  "scoring": "Deterministically shuffle four answer options per question/seed; parse final Answer: A/B/C/D from content.",
+  "notes": [
+    "Five explicit seeds. Older 198×3 sweeps are separate runs."
+  ],
+  "status": "existing_profile"
+}

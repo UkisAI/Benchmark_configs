@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "id": "mmlu_pro",
+  "profile": "../protocol.json",
+  "dataset": {
+    "repository": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+    "dataset_revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be",
+    "harness_repository": "https://github.com/TIGER-AI-Lab/MMLU-Pro",
+    "harness_commit": "f418b116db00b065c2aea046518d8fcf74d39872",
+    "split": "test",
+    "few_shot_split": "validation",
+    "question_count": 12032
+  },
+  "expected_questions": 12032,
+  "seed_policy": {
+    "type": "explicit",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "expected_generations": 60160
+  },
+  "max_output_tokens": 100000,
+  "scoring": "Official five-shot CoT prompt by category; parse final 'The answer is (X)' letter.",
+  "notes": [],
+  "status": "existing_profile"
+}
