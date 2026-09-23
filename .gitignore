@@ -8,3 +8,4 @@ datasets/
 benchmarks/runs/
 benchmarks/upstream/
 monitors/logs/
+benchmarks/pins.env

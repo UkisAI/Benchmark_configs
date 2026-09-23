@@ -1,10 +1,10 @@
 """GPQA Diamond: 198 questions x 5 seeds, 100k tokens. Needs HF access to the gated Idavidrein/gpqa."""
 import csv, random
 from huggingface_hub import hf_hub_download
-from common import flags, chat, run, report, ok, last
+from common import flags, chat, run, report, ok, last, PIN
 
 a = flags("gpqa", max_tokens=100_000, conc=192)
-path = hf_hub_download("Idavidrein/gpqa", "gpqa_diamond.csv", repo_type="dataset", revision="633f5ee89ab8ad4522a9f850766b73f62147ffdd")
+path = hf_hub_download("Idavidrein/gpqa", "gpqa_diamond.csv", repo_type="dataset", revision=PIN("GPQA_REVISION"))
 rows = list(csv.DictReader(open(path, encoding="utf-8")))[: a.limit or None]
 PROMPT = ("Answer the following multiple choice question. The last line of your response must be exactly:\n"
           "Answer: $LETTER\nwhere $LETTER is one of A, B, C, D.\n\n{q}\n\nA) {a}\nB) {b}\nC) {c}\nD) {d}")

@@ -3,7 +3,8 @@
 One file per benchmark. Point it at any OpenAI- or Anthropic-compatible endpoint and run it.
 
 ```bash
-bash setup.sh                                                  # once: pinned harnesses + packages
+cp pins.example.env pins.env                                   # fill in revisions from the run manifest
+bash setup.sh                                                  # once: graders + packages
 python gpqa.py --model my-model --api-base http://127.0.0.1:8000/v1
 ```
 
@@ -43,5 +44,5 @@ python gpqa.py --model my-model --api-base http://127.0.0.1:8000/v1
 - **Sampling:** Qwen3.8 thinking profile, temperature 1, top-p 0.95, top-k 20, `reasoning_effort=xhigh`, seeds 0–4.
 - **Serving:** any compatible endpoint; published numbers used vLLM 0.27.1, BF16, 262,144 context.
 - **Errors:** errors, timeouts and truncations count as wrong and stay in the denominator.
-- **Pins:** every dataset and grader is pinned to a commit in `setup.sh` or the script. Compare only runs with the same settings.
+- **Pins:** exact dataset/grader revisions go in `pins.env` (git-ignored; copy `pins.example.env`), never in this repo. Empty = latest, fine for smoke tests only.
 - **Math:** AIME/HMMT use MathArena's prompt and data with a built-in `\boxed{}` checker (no MathArena install).

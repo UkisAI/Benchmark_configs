@@ -8,6 +8,12 @@ SAMPLING = dict(temperature=1.0, top_p=0.95, top_k=20, min_p=0.0, presence_penal
 THINKING = {"enable_thinking": True, "reasoning_effort": "xhigh"}
 UPSTREAM = Path(__file__).parent / "upstream"
 
+# Exact upstream revisions live in pins.env (git-ignored), never in this repo. See pins.example.env.
+for line in (Path(__file__).parent / "pins.env").read_text().splitlines() if (Path(__file__).parent / "pins.env").exists() else []:
+    if "=" in line and not line.startswith("#"):
+        os.environ.setdefault(*line.split("=", 1))
+PIN = lambda name: os.environ.get(name) or None
+
 
 def flags(name, max_tokens, conc=64, timeout=10800):
     p = argparse.ArgumentParser(description=f"Run {name}.")

@@ -1,10 +1,10 @@
 """MMLU-Pro: 12,032 questions x 5 seeds, official 5-shot CoT prompt, 100k tokens."""
 import re
 from datasets import load_dataset
-from common import flags, chat, run, report, last
+from common import flags, chat, run, report, last, PIN
 
 a = flags("mmlu_pro", max_tokens=100_000, conc=96)
-ds = load_dataset("TIGER-Lab/MMLU-Pro", revision="b189ec765aa7ed75c8acfea42df31fdae71f97be")
+ds = load_dataset("TIGER-Lab/MMLU-Pro", revision=PIN("MMLU_PRO_REVISION"))
 clean = lambda r: dict(r, options=[o for o in r["options"] if o != "N/A"])
 tests = sorted(map(clean, ds["test"]), key=lambda r: int(r["question_id"]))[: a.limit or None]
 shots = {}

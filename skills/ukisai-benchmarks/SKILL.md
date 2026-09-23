@@ -11,7 +11,8 @@ Repo: `https://github.com/UkisAI/Benchmark_configs`. Scripts in `benchmarks/`, c
 
 ```bash
 git clone https://github.com/UkisAI/Benchmark_configs && cd Benchmark_configs
-bash benchmarks/setup.sh        # pinned graders into benchmarks/upstream, light pip + uv installs
+cp benchmarks/pins.example.env benchmarks/pins.env   # exact revisions from the private run manifest
+bash benchmarks/setup.sh        # graders into benchmarks/upstream, light pip + uv installs
 huggingface-cli login           # GPQA is gated
 ```
 
@@ -83,3 +84,4 @@ Once results are final, show one table, one row per benchmark:
 - IFBench scores the visible answer only, never the thinking.
 - Record any `--conc` or hardware change in `benchmarks/runs/NOTES.md`; it changes speed, not the protocol.
 - Don't edit the benchmark scripts mid-run to "fix" a score.
+- Never commit revision IDs or digests; they belong in `benchmarks/pins.env` and the private run manifest.

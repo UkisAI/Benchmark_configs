@@ -1,5 +1,5 @@
 """Terminal-Bench 2.1: 89 tasks x 5 attempts with Harbor 0.20.0 + Terminus 2."""
-from agents import flags, launch
+from agents import flags, launch, PIN
 
 a = flags("tb21", **{"5h": "Qwen-27B protocol: 5h per task, 89 parallel",
                      "native": "Flash-Next protocol: each task's own timeout, 8 parallel"})
@@ -21,6 +21,5 @@ launch(a, {
     "n_attempts": 5,
     "n_concurrent_trials": conc,
     "agents": [agent],
-    "datasets": [{"name": "terminal-bench/terminal-bench-2-1",
-                  "ref": "sha256:7d7bdc1cbedad549fc1140404bd4dc45e5fd0ea7c4186773687d177ad3a0699a"}],
+    "datasets": [{"name": "terminal-bench/terminal-bench-2-1", **({"ref": PIN("TB21_REF")} if PIN("TB21_REF") else {})}],
 }, ["harbor", "run", "-c"], total=89 * 5)

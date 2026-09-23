@@ -1,6 +1,7 @@
 """Shared by the agent benchmarks: flags, then run a Harbor-style job config and keep status.json fresh."""
 import argparse, json, os, subprocess, time
 from pathlib import Path
+from common import PIN  # noqa: F401  (also loads pins.env)
 
 
 def flags(name, **variants):
