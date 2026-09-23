@@ -11,11 +11,11 @@ Repo: `https://github.com/UkisAI/Benchmark_configs`. Scripts in `benchmarks/`, c
 
 ```bash
 git clone https://github.com/UkisAI/Benchmark_configs && cd Benchmark_configs
-bash benchmarks/setup.sh        # pinned harnesses into benchmarks/upstream, pip + uv installs
+bash benchmarks/setup.sh        # pinned graders into benchmarks/upstream, light pip + uv installs
 huggingface-cli login           # GPQA is gated
 ```
 
-The model must already be served behind an OpenAI-compatible endpoint (vLLM 0.27.1, `--reasoning-parser qwen3`, `--max-model-len 262144`).
+The model must already be served behind an OpenAI-compatible endpoint (default) or Anthropic-compatible one (`--api anthropic`). Key goes in `API_KEY`.
 
 ## Run
 

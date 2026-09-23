@@ -12,6 +12,7 @@ UPSTREAM = Path(__file__).parent / "upstream"
 def flags(name, max_tokens, conc=64, timeout=10800):
     p = argparse.ArgumentParser(description=f"Run {name}.")
     p.add_argument("--api-base", default=os.environ.get("API_BASE", "http://127.0.0.1:8000/v1"))
+    p.add_argument("--api", choices=["openai", "anthropic"], default=os.environ.get("API", "openai"), help="endpoint style")
     p.add_argument("--model", default=os.environ.get("MODEL"), required=not os.environ.get("MODEL"))
     p.add_argument("--seeds", default="0,1,2,3,4")
     p.add_argument("--conc", type=int, default=conc, help="parallel requests")
@@ -26,22 +27,49 @@ def flags(name, max_tokens, conc=64, timeout=10800):
 
 
 def chat(a, messages, seed, thinking=True, **extra):
+    """One request to an OpenAI- or Anthropic-compatible endpoint. Returns content, reasoning, tokens, or error."""
+    t = time.time()
+    try:
+        return dict((anthropic if a.api == "anthropic" else openai)(a, messages, seed, thinking, **extra), seconds=time.time() - t)
+    except Exception as e:  # kept and scored wrong; a rerun asks again
+        return dict(content="", reasoning="", finish_reason="error", error=f"{type(e).__name__}: {e}", seconds=time.time() - t)
+
+
+def post(a, path, body, headers):
+    req = urllib.request.Request(a.api_base.rstrip("/") + path, json.dumps(body).encode(), {"Content-Type": "application/json", **headers})
+    with urllib.request.urlopen(req, timeout=a.timeout) as f:
+        return json.load(f)
+
+
+def openai(a, messages, seed, thinking, **extra):
     body = dict(model=a.model, messages=messages, max_tokens=a.max_tokens, seed=seed, **SAMPLING, **extra)
     if thinking:
         body["chat_template_kwargs"] = THINKING
-    req = urllib.request.Request(a.api_base.rstrip("/") + "/chat/completions", json.dumps(body).encode(),
-                                 {"Content-Type": "application/json", "Authorization": "Bearer " + os.environ.get("API_KEY", "none")})
-    t = time.time()
-    try:
-        with urllib.request.urlopen(req, timeout=a.timeout) as f:
-            r = json.load(f)
-        c, u = r["choices"][0], r.get("usage") or {}
-        m = c["message"]
-        return dict(content=m.get("content") or "", reasoning=m.get("reasoning") or m.get("reasoning_content") or "",
-                    finish_reason=c.get("finish_reason"), prompt_tokens=u.get("prompt_tokens"),
-                    completion_tokens=u.get("completion_tokens"), seconds=time.time() - t)
-    except Exception as e:  # kept and scored wrong; a rerun asks again
-        return dict(content="", reasoning="", finish_reason="error", error=f"{type(e).__name__}: {e}", seconds=time.time() - t)
+    r = post(a, "/chat/completions", body, {"Authorization": "Bearer " + os.environ.get("API_KEY", "none")})
+    c, u = r["choices"][0], r.get("usage") or {}
+    return dict(content=c["message"].get("content") or "", reasoning=c["message"].get("reasoning") or c["message"].get("reasoning_content") or "",
+                finish_reason=c.get("finish_reason"), prompt_tokens=u.get("prompt_tokens"), completion_tokens=u.get("completion_tokens"))
+
+
+def anthropic(a, messages, seed, thinking, **extra):
+    def block(b):  # OpenAI image_url data URL -> Anthropic base64 image
+        if b.get("type") != "image_url":
+            return b
+        head, data = b["image_url"]["url"].split(",", 1)
+        return {"type": "image", "source": {"type": "base64", "media_type": head[5:].split(";")[0], "data": data}}
+    msgs = [dict(m, content=[block(b) for b in m["content"]]) if isinstance(m["content"], list) else m for m in messages if m["role"] != "system"]
+    body = dict(model=a.model, messages=msgs, max_tokens=a.max_tokens, temperature=1.0)
+    system = [m["content"] for m in messages if m["role"] == "system"]
+    if system:
+        body["system"] = system[0]
+    if thinking:
+        body["thinking"] = {"type": "enabled", "budget_tokens": a.max_tokens - 1024}
+    r = post(a, "/messages", body, {"x-api-key": os.environ.get("API_KEY", "none"), "anthropic-version": "2023-06-01"})
+    u = r.get("usage") or {}
+    return dict(content="".join(b.get("text", "") for b in r["content"] if b["type"] == "text"),
+                reasoning="".join(b.get("thinking", "") for b in r["content"] if b["type"] == "thinking"),
+                finish_reason="length" if r.get("stop_reason") == "max_tokens" else r.get("stop_reason"),
+                prompt_tokens=u.get("input_tokens"), completion_tokens=u.get("output_tokens"))
 
 
 def run(a, jobs, ask):
