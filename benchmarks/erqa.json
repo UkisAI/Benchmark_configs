@@ -4,13 +4,11 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://github.com/embodiedreasoning/ERQA",
-    "harness_commit": "5bba488252c5b345a43335bfb9239b6bf12bd91c",
+    "harness_commit": "PROVIDE_AT_RUN_TIME",
     "split": "full",
     "question_count": 400,
     "image_inputs": true,
-    "dataset_revision": "TO_PIN_BEFORE_RUN",
-    "prepared_manifest_sha256": "17513e83e4727dba9b96b13a4cd2704af0c9201d6c61a8573a394573ef33d5bc"
-  },
+    "dataset_revision": "TO_PIN_BEFORE_RUN"},
   "expected_questions": 400,
   "seed_policy": {
     "type": "explicit",

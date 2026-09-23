@@ -4,9 +4,9 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
-    "dataset_revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be",
+    "dataset_revision": "PROVIDE_AT_RUN_TIME",
     "harness_repository": "https://github.com/TIGER-AI-Lab/MMLU-Pro",
-    "harness_commit": "f418b116db00b065c2aea046518d8fcf74d39872",
+    "harness_commit": "PROVIDE_AT_RUN_TIME",
     "split": "test",
     "few_shot_split": "validation",
     "question_count": 12032

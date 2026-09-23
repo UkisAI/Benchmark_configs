@@ -4,7 +4,7 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://huggingface.co/datasets/Idavidrein/gpqa",
-    "revision": "633f5ee89ab8ad4522a9f850766b73f62147ffdd",
+    "revision": "PROVIDE_AT_RUN_TIME",
     "file": "gpqa_diamond.csv",
     "split": "diamond",
     "question_count": 198

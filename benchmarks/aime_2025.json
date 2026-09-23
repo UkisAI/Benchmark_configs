@@ -4,11 +4,11 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://github.com/eth-sri/matharena",
-    "harness_commit": "a11194deff8c67a232974a383795e8a2776b4c6f",
+    "harness_commit": "PROVIDE_AT_RUN_TIME",
     "dataset": "MathArena/aime_2025",
     "split": "full",
     "question_count": 30,
-    "dataset_revision": "TO_PIN_BEFORE_RUN",
+    "dataset_revision": "PROVIDE_AT_RUN_TIME",
     "urls": [
       "https://huggingface.co/datasets/MathArena/aime_2025"
     ]
@@ -30,5 +30,5 @@
   "notes": [
     "Do not assume historical scores used this cap without checking their run manifest."
   ],
-  "status": "requested_matched_profile"
+  "status": "pinned_matched_profile_not_run"
 }

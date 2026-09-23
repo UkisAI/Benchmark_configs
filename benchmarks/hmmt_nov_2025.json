@@ -4,11 +4,11 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://github.com/eth-sri/matharena",
-    "harness_commit": "a11194deff8c67a232974a383795e8a2776b4c6f",
+    "harness_commit": "PROVIDE_AT_RUN_TIME",
     "dataset": "MathArena/hmmt_nov_2025",
     "split": "full",
     "question_count": 30,
-    "dataset_revision": "118dbfb45c4c9467c672268ed55166642897aa46",
+    "dataset_revision": "PROVIDE_AT_RUN_TIME",
     "urls": [
       "https://huggingface.co/datasets/MathArena/hmmt_nov_2025"
     ]

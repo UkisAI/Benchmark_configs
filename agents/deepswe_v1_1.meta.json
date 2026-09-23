@@ -5,7 +5,7 @@
   "attempts_per_task": 3,
   "source": {
     "repository": "https://github.com/datacurve-ai/deep-swe",
-    "task_commit": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+    "task_commit": "PROVIDE_AT_RUN_TIME",
     "path": "tasks/"
   },
   "agent": {
@@ -14,7 +14,7 @@
     "pier_version": "0.3.1",
     "mini_swe_agent_version": "2.4.6",
     "reasoning_effort": "xhigh",
-    "version_source": "Local rack2 EVAL_SETUPS_FOR_RACK2.md section 6.1"
+    "version_source": "Matching evaluation environment"
   },
   "limits": {
     "agent_timeout_seconds": 10800,
@@ -36,6 +36,6 @@
   "scoring": "113 × 3 = 339 trials per arm; binary verifier reward; errors/timeouts zero; no selective retries.",
   "notes": [
     "The archived run's effective 10,800-second limit came from task metadata; the saved Harbor job config does not override it.",
-    "Config copied from archived rack2 run with model, endpoint, key, and storage paths replaced by placeholders."
+    "Config copied from archived evaluation run with model, endpoint, key, and storage paths replaced by placeholders."
   ]
 }

@@ -4,11 +4,9 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://github.com/allenai/IFBench",
-    "commit": "1091c4c3de6c1f6ed12c012ed68f11ea450b0117",
+    "commit": "PROVIDE_AT_RUN_TIME",
     "file": "data/IFBench_test.jsonl",
-    "question_count": 300,
-    "file_sha256": "a2bf7b8e7ed11d39c65b4ec781da8b99663ed0121f97033d70fcecb61f8a9d85"
-  },
+    "question_count": 300},
   "expected_questions": 300,
   "seed_policy": {
     "type": "explicit",

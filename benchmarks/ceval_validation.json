@@ -4,11 +4,11 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://huggingface.co/datasets/ceval/ceval-exam",
-    "harness_commit": "cba65ae93bcf189149ced9f66ae0c958201faed9",
+    "harness_commit": "PROVIDE_AT_RUN_TIME",
     "split": "validation",
     "subjects": 52,
     "question_count": 1346,
-    "dataset_revision": "TO_PIN_BEFORE_RUN",
+    "dataset_revision": "PROVIDE_AT_RUN_TIME",
     "urls": [
       "https://huggingface.co/datasets/ceval/ceval-exam"
     ]

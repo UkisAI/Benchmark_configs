@@ -4,11 +4,14 @@
   "profile": "../protocol.json",
   "dataset": {
     "repository": "https://github.com/eth-sri/matharena",
-    "harness_commit": "a11194deff8c67a232974a383795e8a2776b4c6f",
+    "harness_commit": "PROVIDE_AT_RUN_TIME",
     "dataset": "MathArena/aime_2024",
     "split": "AIME I + AIME II",
     "question_count": 30,
-    "dataset_revision": "TO_PIN_BEFORE_RUN",
+    "dataset_revisions": {
+      "MathArena/aime_2024_I": "PROVIDE_AT_RUN_TIME",
+      "MathArena/aime_2024_II": "PROVIDE_AT_RUN_TIME"
+    },
     "urls": [
       "https://huggingface.co/datasets/MathArena/aime_2024_I",
       "https://huggingface.co/datasets/MathArena/aime_2024_II"
@@ -31,5 +34,5 @@
   "notes": [
     "Two 15-question papers. Earlier development checks used 4 trials and a smaller cap; keep them separate."
   ],
-  "status": "requested_matched_profile"
+  "status": "pinned_matched_profile_not_run"
 }
