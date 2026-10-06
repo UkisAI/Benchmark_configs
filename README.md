@@ -7,6 +7,7 @@ Every benchmark UkisAI uses to score its models. Point it at a served model and 
 | [`benchmarks/`](benchmarks) | Run a benchmark. One script each, official prompts and graders. |
 | [`monitors/`](monitors) | Watch runs with your agent: track progress, catch crashes, propose fixes. |
 | [`skills/`](skills) | Give your agent the whole workflow in one skill. |
+| [`economics/`](economics) | Price what shorter reasoning is worth to an inference provider. |
 
 ## Start
 
