@@ -25,7 +25,10 @@ def boxed(text):
 def same(pred, gold):
     if pred is None:
         return False
-    norm = lambda s: re.sub(r"\\[,!; ]|\\left|\\right|\s|\$", "", str(s)).replace("dfrac", "frac").replace("tfrac", "frac")
+    # \sqrt3 -> \sqrt{3}, as MathArena's parser does: parse_latex rejects an unbraced root or silently stops before it
+    # ("6\sqrt3+5\pi" parses as 6), so equal answers scored wrong and some different answers could score right.
+    norm = lambda s: re.sub(r"\\sqrt(\d+)", r"\\sqrt{\1}",
+                            re.sub(r"\\[,!; ]|\\left|\\right|\s|\$", "", str(s)).replace("dfrac", "frac").replace("tfrac", "frac"))
     if norm(pred) == norm(gold):
         return True
     try:
