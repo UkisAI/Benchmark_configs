@@ -18,7 +18,7 @@ No model flag needed: the script asks your server which model it serves and uses
 
 | Benchmark | Run | Size | Limit | Scored by |
 |---|---|---|---|---|
-| GPQA Diamond | `python gpqa.py` | 198 × 5 seeds | 100k tokens | last `Answer: X` |
+| GPQA Diamond | `python gpqa.py` | 198 × 5 seeds | 100k tokens | last `Answer: X` (also `Answer: $X`) or `\boxed{X}` |
 | MMLU-Pro | `python mmlu_pro.py` | 12,032 × 5 | 100k tokens | official 5-shot CoT extractor |
 | C-Eval (val) | `python ceval.py` | 1,346 × 5 | 16k tokens | last `答案：X` |
 | IFBench | `python ifbench.py` | 300 × 5 | 81,920 tokens | official `run_eval.py`, strict + loose |
