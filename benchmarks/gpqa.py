@@ -10,7 +10,8 @@ PROMPT = ("Answer the following multiple choice question. The last line of your 
           "Answer: $LETTER\nwhere $LETTER is one of A, B, C, D.\n\n{q}\n\nA) {a}\nB) {b}\nC) {c}\nD) {d}")
 # The last "Answer: X" or \boxed{X} (also \boxed{\text{X}}) in the visible answer, never the thinking.
 # Some models end with "Answer: \boxed{B}" or only "\boxed{B}"; both name the final letter.
-ANSWER = r"(?:Answer:\s*\**\s*|\\boxed\{\s*(?:\\text(?:bf)?\{\s*)?)([ABCD])\b"
+# Some copy the prompt's "$LETTER" placeholder literally and write "Answer: $B"; the "$" is read past.
+ANSWER = r"(?:Answer:\s*\**\s*\$?\s*|\\boxed\{\s*(?:\\text(?:bf)?\{\s*)?)([ABCD])\b"
 
 
 def answer(text):
